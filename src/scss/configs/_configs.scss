@@ -1,0 +1,16 @@
+@mixin sections_config {
+  padding-left: $padding-horizontal;
+  padding-right: $padding-horizontal;
+  @include media("<=phone") {
+    padding-left: $padding-horizontal-phone;
+    padding-right: $padding-horizontal-phone;
+  }
+}
+@mixin sections_gap {
+  margin-left: $padding-horizontal;
+  margin-right: $padding-horizontal;
+  @include media("<=phone") {
+    margin-left: $padding-horizontal-phone;
+    margin-right: $padding-horizontal-phone;
+  }
+}

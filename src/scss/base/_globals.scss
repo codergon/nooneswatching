@@ -1,0 +1,27 @@
+body {
+  padding: 0px;
+  height: 100vh;
+  background: $bg;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: $font-sm;
+}
+
+* {
+  line-height: 1.2;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  color: $col-a;
+  font-weight: 300;
+  font-family: $sans;
+  position: relative;
+  flex-direction: column;
+}

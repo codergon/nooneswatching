@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
+
+@font-face {
+  font-family: "Typey-light";
+  font-style: normal;
+  font-display: fallback;
+  src: url("../../fonts/Typey/Typey-light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Typey-regular";
+  font-style: normal;
+  font-display: fallback;
+  src: url("../../fonts/Typey/Typey-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: montreal;
+  src: url("../../fonts/Neue-montreal/NeueMontreal-Regular.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-weight: 500;
+  font-family: montreal2;
+  src: url("../../fonts/Neue-montreal/NeueMontreal-Medium.otf");
+}

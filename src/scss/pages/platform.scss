@@ -1,0 +1,337 @@
+.platform_container {
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  background: $bgPlatform;
+  font-family: $mont;
+  letter-spacing: 0.5px;
+
+  div,
+  ul {
+    display: flex;
+  }
+  ul {
+    flex-direction: column;
+  }
+
+  .top_bar {
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px $mainHor 0px;
+    justify-content: space-between;
+    .call_notifications {
+      gap: 6px;
+      color: $col-d;
+      flex-direction: row;
+      font-size: $font-sl;
+      align-items: center;
+      i {
+        margin-bottom: 2px;
+      }
+    }
+    .call_info {
+      gap: 18px;
+      align-items: center;
+      flex-direction: row;
+      .participating_users {
+        gap: 8px;
+        color: $col-d;
+        font-size: $font-sl;
+        align-items: center;
+        flex-direction: row;
+        svg {
+          fill: $col-d;
+        }
+        i {
+          font-size: $font-sm;
+        }
+      }
+      .profile_pic {
+        padding: 1px;
+        overflow: hidden;
+        margin-right: 15px;
+        border-radius: 100%;
+        border: 1.5px solid $col-e;
+        img {
+          width: 20px;
+          height: 20px;
+          object-fit: cover;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+
+  .bottom_bar {
+    width: 100%;
+    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 15px $mainHor 20px;
+    justify-content: space-between;
+
+    .left_bottom {
+      gap: 10px;
+      .call_layout {
+        gap: 6px;
+        color: $col-d;
+        flex-direction: row;
+        align-items: center;
+        svg {
+          width: 18px;
+          stroke: $col-d;
+          .fill_svg {
+            fill: $col-d;
+          }
+        }
+      }
+      .meeting_id {
+        gap: 8px;
+        color: $col-d;
+        font-size: $font-sl;
+        cursor: pointer;
+        align-items: center;
+        flex-direction: row;
+        svg {
+          fill: $col-f;
+        }
+        i {
+          font-size: $font-sm;
+        }
+      }
+    }
+
+    .action_buttons {
+      gap: 13px;
+      // position: absolute;
+      .action_button {
+        width: 40px;
+        height: 40px;
+        color: $col-c;
+        font-size: 19px;
+        cursor: pointer;
+        background: #444;
+        border-radius: 100%;
+        align-items: center;
+        transition: 0.2s all;
+        justify-content: center;
+      }
+      .end_call {
+        width: 58px;
+        border-radius: 20px;
+        background: #208628;
+        background: #f25348;
+
+        svg {
+          width: 22px;
+          stroke: $col-c;
+          fill: $col-c;
+        }
+      }
+    }
+
+    .call_info {
+      gap: 20px;
+      align-items: center;
+      flex-direction: row;
+
+      .busy_status {
+        gap: 8px;
+        color: $col-d;
+        font-size: $font-sl;
+        align-items: center;
+        // font-family: $sansbold;
+        flex-direction: row;
+        svg {
+          fill: $col-f;
+        }
+        i {
+          font-size: $font-sm;
+        }
+      }
+
+      .busy_status {
+        gap: 6px;
+        cursor: pointer;
+        color: #e49f93;
+        padding: 4px 8px;
+        border-radius: 6px;
+        border: 1px solid #e49f9370;
+        .busy_icon {
+          width: 20px;
+          height: 20px;
+          align-items: center;
+          border-radius: 100%;
+          justify-content: center;
+          border: 1px solid #e49f9390;
+          i {
+            font-size: $font-sl;
+          }
+        }
+      }
+    }
+  }
+
+  .main_container {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 15px $mainHor 8px;
+
+    .particpants_content {
+      flex: 1;
+      gap: 16px 16px;
+      height: 100%;
+      overflow: hidden;
+      flex-wrap: wrap;
+      flex-direction: row;
+      .participant_item {
+        flex: 1;
+        align-self: center;
+        min-height: calc(50% - 8px);
+        min-width: calc(50% - 8px);
+        max-width: calc(50% - 8px);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #222;
+        align-items: center;
+        justify-content: center;
+
+        &.one_or_two {
+          max-width: 100%;
+          min-height: 70%;
+        }
+        &.just_one {
+          height: 100%;
+          max-width: 100%;
+          background: transparent;
+        }
+
+        img,
+        .name_circle {
+          width: 40%;
+          overflow: hidden;
+          aspect-ratio: 1;
+          max-width: 140px;
+          max-height: 140px;
+          border-radius: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+        .name_circle {
+          color: $col-c;
+          padding-top: 20px;
+          font-size: $font-xl;
+          line-height: 1 !important;
+          font-family: $sansbold;
+          text-transform: uppercase;
+        }
+        &.info_block {
+          background: none;
+          align-items: flex-start;
+          justify-content: flex-start;
+          .info_text {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            color: #707070;
+            line-height: 1.6;
+            flex-direction: column;
+            .info_hd {
+              margin-bottom: 10px;
+            }
+            .can_do_list {
+              list-style: disc;
+              padding-left: 20px;
+              flex-direction: column;
+              li {
+                //
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .activities_section {
+      width: 350px;
+      height: 100%;
+      // display: none;
+      margin-left: 30px;
+      // height: max-content;
+      background: #fff;
+      border-radius: 8px;
+
+      .activities_options_container {
+        width: 100%;
+        height: 100%;
+        padding: 25px 0px;
+        flex-direction: column;
+        .section_header {
+          font-size: 17px;
+          padding: 0px 18px;
+          padding-bottom: 20px;
+          flex-direction: row;
+          align-items: center;
+          color: #000;
+          // font-family: $mont;
+          justify-content: space-between;
+        }
+
+        .activities_options {
+          width: 100%;
+          display: flex;
+          color: $col-e;
+          flex-direction: column;
+          li {
+            width: 100%;
+            display: flex;
+            padding: 16px 18px;
+            cursor: pointer;
+            font-size: $font-sl;
+            align-items: center;
+            flex-direction: row;
+            &:hover {
+              background: rgba($color: #000000, $alpha: 0.05);
+            }
+            .option_icon {
+              width: 38px;
+              height: 38px;
+              color: #777;
+              font-size: 18px;
+              overflow: hidden;
+              margin-right: 15px;
+              border-radius: 100%;
+              align-items: center;
+              justify-content: center;
+              border: 1px solid #888;
+              svg {
+                width: 20px;
+              }
+            }
+            .option_text {
+              height: 38px;
+              padding: 4px 0px;
+              flex-direction: column;
+              justify-content: space-between;
+              .main {
+                color: #000;
+              }
+              .sub {
+                font-size: $font-xs;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
