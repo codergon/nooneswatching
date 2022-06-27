@@ -22,10 +22,10 @@ export const mockUsers = [
     img: "",
     name: "Willy",
   },
-  {
-    img: "",
-    name: "Uhtred",
-  },
+  // {
+  //   img: "",
+  //   name: "Uhtred",
+  // },
   {
     img: "",
     name: "Info",

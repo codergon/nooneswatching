@@ -1,8 +1,9 @@
 body {
+  width: 100vw;
   padding: 0px;
   height: 100vh;
   background: $bg;
-  min-height: 100vh;
+  max-height: 100vh;
   overflow-x: hidden;
   font-size: $font-sm;
 }
@@ -23,5 +24,6 @@ body {
   font-weight: 300;
   font-family: $sans;
   position: relative;
+  overflow-x: hidden;
   flex-direction: column;
 }

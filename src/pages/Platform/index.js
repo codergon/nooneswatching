@@ -10,7 +10,7 @@ import Twenty48 from "./Twenty48";
 
 const Platform = () => {
   const [isMuted, setIsMuted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [handRaised, setHandRaised] = useState(false);
   const [muteSound, setMuteSound] = useState(false);
   const [isBusy, setIsBusy] = useState(false);
@@ -50,7 +50,7 @@ const Platform = () => {
       <div className="main_container">
         <div className="particpants_content">
           {mockUsers.map((user, index) => {
-            return !(index === 3) ? (
+            return !(index === 5) ? (
               <div
                 className={`participant_item ${
                   mockUsers.length === 1
@@ -118,21 +118,21 @@ const Platform = () => {
 
         <div
           className={`activities_section ${
-            tabType == "snake" ? "game_type" : ""
+            tabType === "snake" ? "game_type" : ""
           }`}
-          style={{ width: !openTab ? "0px" : "350px" }}
+          style={{ display: !openTab ? "none" : "flex" }}
         >
-          {tabType == "menu" ? (
+          {tabType === "menu" ? (
             <ActivitiesMenu setTabType={setTabType} />
-          ) : tabType == "chat" ? (
+          ) : tabType === "chat" ? (
             <ChatScreen setTabType={setTabType} />
-          ) : tabType == "poll" ? (
+          ) : tabType === "poll" ? (
             <PollForm setTabType={setTabType} />
-          ) : tabType == "games" ? (
+          ) : tabType === "games" ? (
             <Games setTabType={setTabType} />
-          ) : tabType == "snake" ? (
+          ) : tabType === "snake" ? (
             <Snake setTabType={setTabType} />
-          ) : tabType == "2048" ? (
+          ) : tabType === "2048" ? (
             <Twenty48 setTabType={setTabType} />
           ) : null}
         </div>
@@ -149,38 +149,42 @@ const Platform = () => {
           </div>
         </div>
 
-        <div className="action_buttons">
-          <div
-            className={`action_button mute_mic ${isMuted ? "active" : ""}`}
-            onClick={HandleMute}
-          >
-            <i className={`ph-microphone${isMuted ? "-slash" : ""}-fill`} />
-          </div>
-          <div
-            className={`action_button enable_video ${
-              isVisible ? "active" : ""
-            }`}
-            onClick={HandleVisibility}
-          >
-            <i className={`ph-video-camera${isVisible ? "-slash" : ""}`} />
-          </div>
-          <div className="action_button end_call">
-            <AppIcons type="call" />
-          </div>
-          <div className={`action_button enable_audio`} onClick={MuteSounds}>
-            <i
-              className={`ph-speaker-simple${muteSound ? "-slash" : "-high"}`}
-            />
-          </div>{" "}
-          <div
-            className={`action_button raise_hand ${handRaised ? "active" : ""}`}
-            onClick={RaiseHand}
-          >
-            {handRaised ? (
-              <i className="ph-hand-palm" />
-            ) : (
-              <AppIcons type="fist" />
-            )}
+        <div className="action_buttons_cover">
+          <div className="action_buttons">
+            <div
+              className={`action_button mute_mic ${isMuted ? "active" : ""}`}
+              onClick={HandleMute}
+            >
+              <i className={`ph-microphone${isMuted ? "-slash" : ""}-fill`} />
+            </div>
+            <div
+              className={`action_button enable_video ${
+                isVisible ? "active" : ""
+              }`}
+              onClick={HandleVisibility}
+            >
+              <i className={`ph-video-camera${isVisible ? "-slash" : ""}`} />
+            </div>
+            <div className="action_button end_call">
+              <AppIcons type="call" />
+            </div>
+            <div className={`action_button enable_audio`} onClick={MuteSounds}>
+              <i
+                className={`ph-speaker-simple${muteSound ? "-slash" : "-high"}`}
+              />
+            </div>
+            <div
+              className={`action_button raise_hand ${
+                handRaised ? "active" : ""
+              }`}
+              onClick={RaiseHand}
+            >
+              {handRaised ? (
+                <i className="ph-hand-palm" />
+              ) : (
+                <AppIcons type="fist" />
+              )}
+            </div>
           </div>
         </div>
 
@@ -199,7 +203,8 @@ const Platform = () => {
             className={`activites_tab ${openTab ? "active" : ""}`}
             onClick={TabStatus}
           >
-            <i className={`ph-circles-four${openTab ? "-fill" : "-bold"}`} />
+            <AppIcons type={openTab ? "activitiesClicked" : "activities"} />
+            <i className={`ph-circles-four$`} />
           </div>
         </div>
       </div>

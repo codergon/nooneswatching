@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 const Snake = ({ setTabType }) => {
   let started = false;
@@ -16,8 +16,6 @@ const Snake = ({ setTabType }) => {
   let canv;
   let ctx;
 
-  const [score, setScore] = useState(0);
-
   useEffect(() => {
     let Id;
     canv = document.getElementById("game_container");
@@ -31,7 +29,6 @@ const Snake = ({ setTabType }) => {
   }, []);
 
   const EndGame = () => {
-    const prev = tail;
     started = false;
     px = 9;
     py = 9;
@@ -67,7 +64,7 @@ const Snake = ({ setTabType }) => {
     ctx.fillStyle = "#5b5b5b";
     for (var i = 0; i < trail.length; i++) {
       ctx.fillRect(trail[i].x * gs, trail[i].y * gs, gs - 1.8, gs - 1.8);
-      if (trail[i].x == px && trail[i].y == py) {
+      if (trail[i].x === px && trail[i].y === py) {
         if (started) {
           EndGame();
         } else {
@@ -80,7 +77,7 @@ const Snake = ({ setTabType }) => {
       trail.shift();
     }
 
-    if (ax == px && ay == py) {
+    if (ax === px && ay === py) {
       tail++;
       if (trail.length > 5) started = true;
       ax = Math.floor(Math.random() * tc);
@@ -129,15 +126,35 @@ const Snake = ({ setTabType }) => {
       <div className="game_container">
         <canvas id="game_container" width="324" height="324"></canvas>
 
+        <div className="game_controls">
+          <div className="row row1">
+            <button onClick={() => keyPush({ keyCode: 38 })}>
+              <i class="ph-arrow-up-fill"></i>
+            </button>
+          </div>
+          <div className="row row2">
+            <button onClick={() => keyPush({ keyCode: 37 })}>
+              <i class="ph-arrow-left-fill"></i>
+            </button>
+            <button onClick={() => keyPush({ keyCode: 39 })}>
+              <i class="ph-arrow-right-fill"></i>
+            </button>
+          </div>
+          <div className="row row3">
+            <button onClick={() => keyPush({ keyCode: 40 })}>
+              <i class="ph-arrow-down-fill"></i>
+            </button>
+          </div>
+        </div>
+
         <div className="game_score">
-          {/* <p>Snakey final score : {score}</p> */}
           <button
             onClick={() => {
               EndGame();
             }}
           >
             <p>Restart</p>
-            <i className="ph-arrow-counter-clockwise" />
+            <i className="ph-arrows-counter-clockwise" />
           </button>
         </div>
       </div>

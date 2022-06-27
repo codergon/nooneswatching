@@ -92,11 +92,13 @@
     flex-direction: row;
     align-items: center;
     position: relative;
+    min-height: 68px;
     padding: 15px $mainHor 20px;
     justify-content: space-between;
 
     .left_bottom {
       gap: 10px;
+      z-index: 2;
       .call_layout {
         gap: 6px;
         color: $col-d;
@@ -126,47 +128,56 @@
       }
     }
 
-    .action_buttons {
-      gap: 13px;
-      // position: absolute;
-      .action_button {
-        width: 40px;
-        height: 40px;
-        color: $col-c;
-        font-size: 19px;
-        cursor: pointer;
-        background: #444;
-        border-radius: 100%;
-        align-items: center;
-        transition: 0.2s all;
-        justify-content: center;
+    .action_buttons_cover {
+      width: $actionBarPad;
+      height: 100%;
+      align-items: center;
+      position: absolute;
+      justify-content: center;
+      .action_buttons {
+        gap: 13px;
+        background: $bgPlatform;
+        .action_button {
+          width: 40px;
+          height: 40px;
+          color: $col-c;
+          font-size: 19px;
+          cursor: pointer;
+          background: #444;
+          border-radius: 100%;
+          align-items: center;
+          transition: 0.2s all;
+          justify-content: center;
 
-        svg {
-          width: 16px;
-          stroke: $col-d;
-        }
+          svg {
+            width: 16px;
+            stroke: $col-d;
+          }
 
-        &.active {
-          background: #f25348;
-          &.raise_hand {
-            background: #1a88fe;
+          &.active {
+            background: #f25348;
+            &.raise_hand {
+              background: #1a88fe;
+            }
           }
         }
-      }
-      .end_call {
-        width: 58px;
-        border-radius: 20px;
+        .end_call {
+          width: 58px;
+          background: #f25348;
+          border-radius: 20px;
 
-        svg {
-          width: 22px;
-          stroke: $col-c;
-          fill: $col-c;
+          svg {
+            width: 22px;
+            stroke: $col-c;
+            fill: $col-c;
+          }
         }
       }
     }
 
     .status_n_activities {
       gap: 20px;
+      z-index: 2;
       align-items: center;
       flex-direction: row;
 
@@ -203,7 +214,6 @@
         height: 32px;
         color: #999;
         margin-left: 16px;
-        margin-right: 20px;
         font-size: 16px;
         cursor: pointer;
         background: #444;
@@ -213,10 +223,40 @@
         justify-content: center;
         svg {
           width: 16px;
-          stroke: $col-d;
+          fill: $col-c;
         }
         &.active {
           color: $col-c;
+        }
+      }
+    }
+
+    @include media("<=tabletmed") {
+      gap: 25px;
+      justify-content: center;
+      .action_buttons_cover {
+        width: auto;
+        position: relative;
+      }
+      .left_bottom {
+        display: none;
+      }
+      .status_n_activities {
+        .busy_status {
+          display: none;
+        }
+        .activites_tab {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    @include media("<=phonemed") {
+      .action_buttons_cover {
+        position: relative;
+        .action_buttons {
+          background: $bgPlatform;
         }
       }
     }
@@ -226,6 +266,7 @@
     flex: 1;
     width: 100%;
     overflow: hidden;
+    position: relative;
     flex-direction: row;
     padding: 15px $mainHor 8px;
 
@@ -242,6 +283,7 @@
         min-height: calc(50% - 8px);
         min-width: calc(50% - 8px);
         max-width: calc(50% - 8px);
+        max-height: calc(50% - 8px);
         border-radius: 8px;
         overflow: hidden;
         background: #222;
@@ -269,13 +311,16 @@
           align-items: center;
           justify-content: center;
         }
+
         .name_circle {
           color: $col-c;
-          padding-top: 20px;
           font-size: $font-xl;
           line-height: 1 !important;
           font-family: $sansbold;
           text-transform: uppercase;
+          p {
+            padding-top: 20px;
+          }
         }
         &.info_block {
           background: none;
@@ -305,6 +350,62 @@
           }
         }
       }
+
+      @include media("<=desktop") {
+        .participant_item {
+          &.one_or_two {
+            max-width: 100%;
+            min-height: 50%;
+            min-height: calc(50% - 8px);
+          }
+          &.just_one {
+            max-height: 100%;
+          }
+        }
+      }
+      @include media("<=tablet") {
+        .participant_item {
+          .name_circle {
+            font-size: 7vw;
+            p {
+              padding-top: 2vw;
+            }
+          }
+        }
+      }
+      @include media("<=phonemed") {
+        flex-direction: column;
+        .participant_item {
+          width: 450px;
+          max-width: 100%;
+          min-height: calc(25% - 16px);
+          img,
+          .name_circle {
+            width: 60%;
+            max-width: 100px;
+          }
+          .name_circle {
+            font-size: 5vw;
+            p {
+              padding-top: 1vw;
+            }
+          }
+
+          &.one_or_two {
+            max-width: 100%;
+            min-height: 50%;
+            min-height: calc(50% - 8px);
+          }
+        }
+      }
+
+      @include media("<=phone") {
+        .participant_item {
+          .name_circle {
+            font-size: 7vw;
+          }
+        }
+      }
     }
 
     .activities_section {
@@ -314,8 +415,16 @@
       background: #fff;
       border-radius: 8px;
       overflow: hidden;
-      // transition: width 0.5s;
       flex-direction: column;
+
+      @include media("<=desktop") {
+        right: 30px;
+        height: calc(100% - 23px);
+        position: absolute;
+      }
+      @include media("<=phone") {
+        width: calc(100% - 60px);
+      }
 
       &.game_type {
         background: #222;
@@ -375,8 +484,9 @@
           justify-content: center;
 
           button {
-            gap: 6px;
+            gap: 8px;
             color: #ddd;
+            font-size: $font-sm;
             display: flex;
             cursor: pointer;
             padding: 6px 12px;
@@ -385,8 +495,42 @@
             flex-direction: row;
             align-items: center;
             border: 1px solid #444;
-            i {
-              transform: scale(0.9);
+          }
+        }
+        .game_controls {
+          gap: 5px;
+          width: 180px;
+          margin-top: 20px;
+          flex-direction: column;
+          .row {
+            width: 100%;
+            flex-direction: row;
+            justify-content: center;
+            button {
+              color: #eee;
+              padding: 3px 8px;
+              font-size: 25px;
+              cursor: pointer;
+              border-radius: 8px;
+              background: #666;
+            }
+            &.row1 {
+              align-items: flex-start;
+              i {
+                margin-top: 6px;
+              }
+            }
+            &.row2 {
+              justify-content: space-between;
+              i {
+                margin-top: 6px;
+              }
+            }
+            &.row3 {
+              align-items: flex-end;
+              i {
+                margin-top: 6px;
+              }
             }
           }
         }
