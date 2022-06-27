@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { AbstractLines } from "../svgs";
 import React, { useState, Fragment, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [meetingId, setMeetingId] = useState("");
@@ -56,9 +57,7 @@ const Home = () => {
                 Video conferencing with <br /> the optimal visual quality
               </p>
               <p className="sub">
-                {/* Connect with friends, attend meetings, build business
-              relationships */}
-                Connect with friends, attend meetings, and build great business{" "}
+                Connect with friends, attend meetings and build great business
                 <br />
                 relationships in a secure space while enjoying excellent visual
                 quality.
@@ -66,10 +65,11 @@ const Home = () => {
             </div>
 
             <div className="get_started">
-              <button className="new_meeting_button">
+              <NavLink to="/qcnf-ybeu-mdij" className="new_meeting_button">
                 <i className="ph-phone-call"></i>
                 <p>New call</p>
-              </button>
+              </NavLink>
+
               <input
                 type="text"
                 value={meetingId}
@@ -116,28 +116,28 @@ const Home = () => {
           <div className="features_sect">
             <div className="features_item">
               <div className="features_hd">
-                <p>Global coverage</p>
+                <p>In-call messaging</p>
               </div>
               <div className="hor_line" />
-              <div className="features_txt">Lorem ipsum dolor sit, it amet</div>
+              <div className="features_txt">Chat up room participant(s)</div>
             </div>{" "}
             <div className="features_item">
               <div className="features_hd">
-                <p>Global coverage</p>
+                <p>Create group polls</p>
               </div>
               <div className="hor_line" />
-              <div className="features_txt">Lorem ipsum dolor sit, it amet</div>
+              <div className="features_txt">Make important group decisions</div>
             </div>
           </div>
 
           <div className="foot_highlight">
             <div className="foot_highlight_txt">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
-              architecto.
+              Multiple layout configurations to suit your view. Get started
             </div>
-            <div className="highlight_arrow">
+
+            <NavLink to="/qcnf-ybeu-mdij" className="highlight_arrow">
               <i className="ph-arrow-right"></i>
-            </div>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -100,6 +100,7 @@
             color: $bg;
             height: 48px;
             display: flex;
+            cursor: pointer;
             align-items: center;
             border-radius: 6px;
             background: #eee;
@@ -232,7 +233,8 @@
         margin-top: 10px;
         flex-direction: row;
         .features_item {
-          width: 220px;
+          width: max-content;
+          white-space: nowrap;
           margin-right: 45px;
           flex-direction: column;
           .features_hd {
@@ -241,7 +243,7 @@
             // font-family: $sansbold;
           }
           .hor_line {
-            width: 85%;
+            width: calc(100% - 20px);
             border: $border-c;
             border-width: 0.5px;
             margin: 13px 0px 12px;
@@ -292,11 +294,12 @@
         .highlight_arrow {
           width: 40px;
           height: 40px;
+          display: flex;
+          color: #000;
+          background: #fff;
           align-items: center;
           border-radius: 100%;
-          background: #fff;
           justify-content: center;
-          color: #000;
         }
       }
     }

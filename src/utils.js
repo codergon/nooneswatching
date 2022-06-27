@@ -15,7 +15,7 @@ export const userColors = [
 
 export const mockUsers = [
   {
-    img: "img/3.jpeg",
+    img: "/img/3.jpeg",
     name: "Alpha",
   },
   {

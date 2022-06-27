@@ -1,3 +1,21 @@
+@mixin scrollMixin {
+  &::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+}
+
 .platform_container {
   width: 100%;
   display: flex;
@@ -122,12 +140,22 @@
         align-items: center;
         transition: 0.2s all;
         justify-content: center;
+
+        svg {
+          width: 16px;
+          stroke: $col-d;
+        }
+
+        &.active {
+          background: #f25348;
+          &.raise_hand {
+            background: #1a88fe;
+          }
+        }
       }
       .end_call {
         width: 58px;
         border-radius: 20px;
-        background: #208628;
-        background: #f25348;
 
         svg {
           width: 22px;
@@ -137,28 +165,14 @@
       }
     }
 
-    .call_info {
+    .status_n_activities {
       gap: 20px;
       align-items: center;
       flex-direction: row;
 
       .busy_status {
-        gap: 8px;
-        color: $col-d;
-        font-size: $font-sl;
-        align-items: center;
-        // font-family: $sansbold;
-        flex-direction: row;
-        svg {
-          fill: $col-f;
-        }
-        i {
-          font-size: $font-sm;
-        }
-      }
-
-      .busy_status {
         gap: 6px;
+        width: 120px;
         cursor: pointer;
         color: #e49f93;
         padding: 4px 8px;
@@ -174,6 +188,35 @@
           i {
             font-size: $font-sl;
           }
+        }
+        &.active {
+          color: #039393;
+          border-color: #039393c0;
+          .busy_icon {
+            border-color: #039393c0;
+          }
+        }
+      }
+
+      .activites_tab {
+        width: 32px;
+        height: 32px;
+        color: #999;
+        margin-left: 16px;
+        margin-right: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #444;
+        border-radius: 100%;
+        align-items: center;
+        transition: 0.2s all;
+        justify-content: center;
+        svg {
+          width: 16px;
+          stroke: $col-d;
+        }
+        &.active {
+          color: $col-c;
         }
       }
     }
@@ -242,6 +285,7 @@
             width: 100%;
             max-width: 500px;
             padding: 20px;
+            font-size: $font-sl;
             color: #707070;
             line-height: 1.6;
             flex-direction: column;
@@ -249,11 +293,13 @@
               margin-bottom: 10px;
             }
             .can_do_list {
-              list-style: disc;
-              padding-left: 20px;
+              gap: 10px;
               flex-direction: column;
               li {
-                //
+                gap: 6px;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
               }
             }
           }
@@ -264,27 +310,93 @@
     .activities_section {
       width: 350px;
       height: 100%;
-      // display: none;
       margin-left: 30px;
-      // height: max-content;
       background: #fff;
       border-radius: 8px;
+      overflow: hidden;
+      // transition: width 0.5s;
+      flex-direction: column;
+
+      &.game_type {
+        background: #222;
+        .section_header {
+          color: #fff;
+        }
+      }
+
+      .section_header {
+        font-size: 17px;
+        padding: 0px 18px;
+        padding-bottom: 20px;
+        flex-direction: row;
+        color: #000;
+        flex-direction: column;
+
+        .main {
+          gap: 10px;
+          align-items: center;
+          flex-direction: row;
+          .back_button {
+            padding: 5px;
+            cursor: pointer;
+          }
+        }
+        .header_text {
+          gap: 8px;
+          width: 100%;
+          margin-top: 15px;
+          flex-direction: row;
+          align-items: center;
+          .sub {
+            color: $col-b;
+            line-height: 1.2;
+            font-size: $font-sl;
+          }
+        }
+      }
+
+      .game_container {
+        width: 100%;
+        padding: 0px 15px;
+        align-items: center;
+        flex-direction: column;
+        #game_container {
+          border-radius: 5px;
+          border: 1px solid #282828;
+        }
+
+        .game_score {
+          width: 100%;
+          margin-top: 20px;
+          flex-direction: row;
+          align-items: center;
+          text-transform: uppercase;
+          justify-content: space-between;
+          justify-content: center;
+
+          button {
+            gap: 6px;
+            color: #ddd;
+            display: flex;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #333;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid #444;
+            i {
+              transform: scale(0.9);
+            }
+          }
+        }
+      }
 
       .activities_options_container {
         width: 100%;
         height: 100%;
         padding: 25px 0px;
         flex-direction: column;
-        .section_header {
-          font-size: 17px;
-          padding: 0px 18px;
-          padding-bottom: 20px;
-          flex-direction: row;
-          align-items: center;
-          color: #000;
-          // font-family: $mont;
-          justify-content: space-between;
-        }
 
         .activities_options {
           width: 100%;
@@ -316,6 +428,14 @@
               svg {
                 width: 20px;
               }
+              .small_txt {
+                font-size: 10px;
+                font-family: $montbold;
+              }
+            }
+            .activity_name {
+              color: #000;
+              font-size: $font-sm;
             }
             .option_text {
               height: 38px;
@@ -329,6 +449,261 @@
                 font-size: $font-xs;
               }
             }
+          }
+        }
+      }
+
+      .messaging_tab_container {
+        width: 100%;
+        height: 100%;
+        padding: 25px 0px;
+        flex-direction: column;
+
+        .section_header {
+          .download_chat {
+            width: 27px;
+            height: 27px;
+            color: #fff;
+            font-size: 17px;
+            cursor: pointer;
+            padding-left: 1px;
+            overflow: hidden;
+            border-radius: 100%;
+            align-items: center;
+            background: #999;
+            justify-content: center;
+          }
+        }
+
+        .chat_container {
+          flex: 1;
+          // width: 100%;
+          overflow: hidden scroll;
+          padding: 16px 0px;
+          margin-right: 2px;
+
+          @include scrollMixin();
+
+          ul {
+            width: 100%;
+            padding: 0px 20px;
+            padding-right: 12px;
+            flex-direction: column;
+            li {
+              width: 100%;
+              padding-top: 18px;
+              margin-top: 12px;
+              flex-direction: column;
+              border-top: 1px solid #eee;
+              &:first-child {
+                margin-top: 0px;
+                padding-top: 0px;
+                border-top: none;
+              }
+              &:last-child {
+                padding-bottom: 30px;
+              }
+              .sender_name_time {
+                gap: 10px;
+                font-size: 12px;
+                margin-bottom: 8px;
+                align-items: center;
+                justify-content: space-between;
+                .name {
+                  color: #333;
+                  font-size: $font-sm;
+                  font-size: 13px;
+                }
+                .time {
+                  margin-top: 2px;
+                  text-transform: uppercase;
+                }
+              }
+              .message_content {
+                p {
+                  width: 100%;
+                  line-height: 1.2;
+                  font-size: 13px;
+                  color: #666;
+                }
+              }
+            }
+          }
+        }
+        .chat_input_container {
+          align-items: center;
+          flex-direction: row;
+          padding: 16px 18px 0px;
+
+          .input_cover {
+            width: 100%;
+            padding: 14px 0px;
+            border-radius: 10px;
+            align-items: center;
+            flex-direction: row;
+            background: rgba($color: #000000, $alpha: 0.06);
+            textarea {
+              flex: 1;
+              outline: none;
+              resize: none;
+              border: none;
+              padding: 0px 16px;
+              line-height: 1.5;
+              font-size: $font-sl;
+              font-family: $mont;
+              overflow: hidden;
+              letter-spacing: 0.8px;
+              background: transparent;
+            }
+
+            .send_message {
+              display: flex;
+              font-size: 20px;
+              cursor: pointer;
+              color: $col-e;
+              padding: 0px 10px;
+              align-items: center;
+              justify-content: center;
+              &.typing {
+                color: #555;
+              }
+            }
+          }
+        }
+      }
+
+      .create_poll_container {
+        width: 100%;
+        height: 100%;
+        padding: 25px 0px;
+        flex-direction: column;
+        .poll_form {
+          flex: 1;
+          overflow: hidden;
+          margin-top: 30px;
+          font-size: $font-sl;
+          padding: 0px 16px;
+          flex-direction: column;
+          .poll_entry {
+            flex-direction: column;
+
+            .label {
+              color: #555;
+              padding-left: 8px;
+              margin-bottom: 16px;
+            }
+            .input_cover {
+              padding: 11.5px 0px;
+              background: #f0f3f4;
+              border-radius: 8px;
+
+              textarea {
+                flex: 1;
+                outline: none;
+                resize: none;
+                border: none;
+                padding: 0px 14px;
+                line-height: 1.5;
+                font-size: $font-sl;
+                font-family: $mont;
+                overflow: hidden;
+                letter-spacing: 0.7px;
+                background: transparent;
+              }
+            }
+          }
+          .options_header {
+            color: #555;
+            padding-left: 8px;
+            margin: 30px 0px;
+            &.preview {
+              flex-direction: column;
+              margin: 30px 0px 20px;
+              .sub {
+                font-size: 13px;
+                color: #888;
+                margin-top: 10px;
+              }
+            }
+          }
+          .add_option_cover {
+            gap: 10px;
+            align-items: center;
+            flex-direction: row;
+            input {
+              flex: 1;
+              height: 44px;
+              border-radius: 8px;
+              padding: 14px 16px;
+              background: #f0f3f4;
+            }
+            .add_option {
+              width: 44px;
+              height: 44px;
+              display: flex;
+              font-size: 20px;
+              cursor: pointer;
+              color: #666;
+              border-radius: 8px;
+              background: #ddd;
+              align-items: center;
+              justify-content: center;
+              // border: 1px solid #bbb;
+            }
+          }
+        }
+
+        .poll_title_preview {
+          margin-bottom: 10px;
+          line-height: 1.4;
+          padding-left: 8px;
+          color: #444;
+        }
+
+        .poll_options_preview_cover {
+          flex: 1;
+          overflow: hidden scroll;
+          @include scrollMixin();
+          .poll_options_preview {
+            flex: 1;
+            width: 100%;
+            height: max-content;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-bottom: 20px;
+            align-content: flex-start;
+
+            li {
+              color: #555;
+              cursor: pointer;
+              padding: 7px 15px;
+              line-height: 1.4;
+              border-radius: 8px;
+              height: max-content;
+              border: 1px solid #ddd;
+
+              &:hover {
+                background: rgba($color: #000000, $alpha: 0.05);
+              }
+            }
+          }
+        }
+
+        .create_button_cover {
+          width: 100%;
+          padding: 16px 16px 0px;
+          .create_poll {
+            width: 100%;
+            padding: 12px 16px;
+            display: flex;
+            color: #666;
+            cursor: pointer;
+            font-size: $font-sm;
+            border-radius: 8px;
+            align-items: center;
+            border: 1px solid #bbb;
+            justify-content: center;
           }
         }
       }
