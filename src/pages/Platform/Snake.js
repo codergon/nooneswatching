@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { isBrowser, isMobile } from "react-device-detect";
 
 const Snake = ({ setTabType }) => {
   let started = false;
@@ -126,26 +127,28 @@ const Snake = ({ setTabType }) => {
       <div className="game_container">
         <canvas id="game_container" width="324" height="324"></canvas>
 
-        <div className="game_controls">
-          <div className="row row1">
-            <button onClick={() => keyPush({ keyCode: 38 })}>
-              <i class="ph-arrow-up-fill"></i>
-            </button>
+        {isMobile ? (
+          <div className="game_controls">
+            <div className="row row1">
+              <button onClick={() => keyPush({ keyCode: 38 })}>
+                <i class="ph-arrow-up-fill"></i>
+              </button>
+            </div>
+            <div className="row row2">
+              <button onClick={() => keyPush({ keyCode: 37 })}>
+                <i class="ph-arrow-left-fill"></i>
+              </button>
+              <button onClick={() => keyPush({ keyCode: 39 })}>
+                <i class="ph-arrow-right-fill"></i>
+              </button>
+            </div>
+            <div className="row row3">
+              <button onClick={() => keyPush({ keyCode: 40 })}>
+                <i class="ph-arrow-down-fill"></i>
+              </button>
+            </div>
           </div>
-          <div className="row row2">
-            <button onClick={() => keyPush({ keyCode: 37 })}>
-              <i class="ph-arrow-left-fill"></i>
-            </button>
-            <button onClick={() => keyPush({ keyCode: 39 })}>
-              <i class="ph-arrow-right-fill"></i>
-            </button>
-          </div>
-          <div className="row row3">
-            <button onClick={() => keyPush({ keyCode: 40 })}>
-              <i class="ph-arrow-down-fill"></i>
-            </button>
-          </div>
-        </div>
+        ) : null}
 
         <div className="game_score">
           <button
@@ -157,6 +160,12 @@ const Snake = ({ setTabType }) => {
             <i className="ph-arrows-counter-clockwise" />
           </button>
         </div>
+
+        {isBrowser ? (
+          <p className="moving_instruction">
+            Use arrow keys to move Snakey around
+          </p>
+        ) : null}
       </div>
     </div>
   );
